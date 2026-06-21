@@ -1,0 +1,45 @@
+<div class="container py-4 formulario-clase">
+  <div class="card border-success">
+    <div class="card-body">
+      <h3 class="text-center mb-4">{{ esEdicion ? 'Actualizar curso' : 'Registrar curso' }}</h3>
+      <form>
+        @if (esEdicion) {
+          <div class="mb-3">
+            <label class="form-label">ID</label>
+            <input type="text" class="form-control" [value]="curso.idCurso" readonly />
+          </div>
+        }
+        <div class="mb-3">
+          <label class="form-label">Idioma</label>
+          <input type="text" class="form-control" [(ngModel)]="curso.idioma" name="idioma" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Nivel</label>
+          <input type="text" class="form-control" [(ngModel)]="curso.nivel" name="nivel" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Horario</label>
+          <input type="text" class="form-control" [(ngModel)]="curso.horario" name="horario" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Salón</label>
+          <input type="text" class="form-control" [(ngModel)]="curso.salon" name="salon" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Profesor</label>
+          <select class="form-select" [(ngModel)]="curso.idProfesor" name="idProfesor">
+            <option [ngValue]="null">Seleccione...</option>
+            @for (p of profesores; track p.idProfesor) {
+              <option [ngValue]="p.idProfesor">{{ p.nombre }} {{ p.apellidos }} ({{ p.idiomaEspecialidad }})</option>
+            }
+          </select>
+        </div>
+        @if (!esEdicion) {
+          <button type="button" class="btn btn-outline-primary form-control" (click)="registrar()">Registrar</button>
+        } @else {
+          <button type="button" class="btn btn-outline-success form-control" (click)="actualizar()">Actualizar</button>
+        }
+      </form>
+    </div>
+  </div>
+</div>

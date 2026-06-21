@@ -1,0 +1,36 @@
+<div class="container py-4 formulario-clase">
+  <div class="card border-success">
+    <div class="card-body">
+      <h3 class="text-center mb-4">{{ esEdicion ? 'Actualizar profesor' : 'Registrar profesor' }}</h3>
+      <form>
+        @if (esEdicion) {
+          <div class="mb-3">
+            <label class="form-label">ID</label>
+            <input type="text" class="form-control" [value]="profesor.idProfesor" readonly />
+          </div>
+        }
+        <div class="mb-3">
+          <label class="form-label">No. Empleado</label>
+          <input type="text" class="form-control" [(ngModel)]="profesor.numEmpleado" name="numEmpleado" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Nombre</label>
+          <input type="text" class="form-control" [(ngModel)]="profesor.nombre" name="nombre" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Apellidos</label>
+          <input type="text" class="form-control" [(ngModel)]="profesor.apellidos" name="apellidos" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Idioma especialidad</label>
+          <input type="text" class="form-control" [(ngModel)]="profesor.idiomaEspecialidad" name="idioma" />
+        </div>
+        @if (!esEdicion) {
+          <button type="button" class="btn btn-outline-primary form-control" (click)="registrar()">Registrar</button>
+        } @else {
+          <button type="button" class="btn btn-outline-success form-control" (click)="actualizar()">Actualizar</button>
+        }
+      </form>
+    </div>
+  </div>
+</div>

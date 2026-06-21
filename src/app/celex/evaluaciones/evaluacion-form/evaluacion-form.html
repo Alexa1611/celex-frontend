@@ -1,0 +1,45 @@
+<div class="container py-4 formulario-clase">
+  <div class="card border-success">
+    <div class="card-body">
+      <h3 class="text-center mb-4">{{ esEdicion ? 'Actualizar evaluación' : 'Registrar evaluación' }}</h3>
+      <form>
+        @if (esEdicion) {
+          <div class="mb-3">
+            <label class="form-label">ID</label>
+            <input type="text" class="form-control" [value]="evaluacion.idEvaluacion" readonly />
+          </div>
+        }
+        <div class="mb-3">
+          <label class="form-label">Calificación Speaking (0-100)</label>
+          <input type="number" min="0" max="100" step="0.01" class="form-control" [(ngModel)]="evaluacion.calificacionSpeaking" name="speaking" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Calificación Writing (0-100)</label>
+          <input type="number" min="0" max="100" step="0.01" class="form-control" [(ngModel)]="evaluacion.calificacionWriting" name="writing" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Inscripción</label>
+          <select class="form-select" [(ngModel)]="evaluacion.idInscripcion" name="idInscripcion">
+            <option [ngValue]="null">Seleccione...</option>
+            @for (i of inscripciones; track i.idInscripcion) {
+              <option [ngValue]="i.idInscripcion">
+                #{{ i.idInscripcion }} - {{ i.alumnoNombre || i.idAlumno }} / {{ i.cursoNombre || i.idCurso }}
+              </option>
+            }
+          </select>
+        </div>
+        @if (esEdicion && evaluacion.promedioFinal) {
+          <div class="mb-3">
+            <label class="form-label">Promedio actual</label>
+            <input type="text" class="form-control" [value]="evaluacion.promedioFinal" readonly />
+          </div>
+        }
+        @if (!esEdicion) {
+          <button type="button" class="btn btn-outline-primary form-control" (click)="registrar()">Registrar</button>
+        } @else {
+          <button type="button" class="btn btn-outline-success form-control" (click)="actualizar()">Actualizar</button>
+        }
+      </form>
+    </div>
+  </div>
+</div>

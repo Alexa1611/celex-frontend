@@ -1,0 +1,66 @@
+<div class="container py-4">
+  <div class="card border-success">
+    <div class="card-body">
+      <form>
+        @if (esEdicion) {
+          <div class="mb-3">
+            <label class="form-label" for="id">id</label>
+            <input
+              id="id"
+              type="text"
+              class="form-control"
+              [value]="frase.id"
+              readonly
+            />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="autor">autor</label>
+          <input
+            id="autor"
+            type="text"
+            class="form-control"
+            [(ngModel)]="frase.autor"
+            name="autor"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="texto">texto</label>
+          <textarea
+            id="texto"
+            class="form-control"
+            rows="3"
+            [(ngModel)]="frase.texto"
+            name="texto"
+          ></textarea>
+        </div>
+
+        @if (!esEdicion) {
+          <div class="mb-3">
+            <button
+              type="button"
+              class="btn btn-outline-primary form-control"
+              (click)="registrarFrase()"
+            >
+              Registrar
+            </button>
+          </div>
+        }
+
+        @if (esEdicion) {
+          <div class="mb-3">
+            <button
+              type="button"
+              class="btn btn-outline-success form-control"
+              (click)="actualizarFrase()"
+            >
+              Actualizar
+            </button>
+          </div>
+        }
+      </form>
+    </div>
+  </div>
+</div>

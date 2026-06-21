@@ -1,0 +1,37 @@
+<div class="contenido-listado">
+  <h2 class="titulo-listado">Profesores</h2>
+  <div class="text-center mb-3">
+    <a class="btn btn-primary" routerLink="/profesorForm">Registrar profesor</a>
+  </div>
+  <table class="table table-bordered table-striped tabla-clase">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>No. Empleado</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Idioma</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (profesores.length === 0) {
+        <tr><td colspan="6" class="text-center text-muted py-4">No hay profesores</td></tr>
+      } @else {
+        @for (p of profesores; track p.idProfesor) {
+          <tr>
+            <td class="col-centro">{{ p.idProfesor }}</td>
+            <td class="col-centro">{{ p.numEmpleado }}</td>
+            <td>{{ p.nombre }}</td>
+            <td>{{ p.apellidos }}</td>
+            <td>{{ p.idiomaEspecialidad }}</td>
+            <td class="col-acciones">
+              <button type="button" class="btn btn-sm btn-outline-danger me-1" (click)="eliminar(p.idProfesor)">Eliminar</button>
+              <a class="btn btn-sm btn-outline-dark" [routerLink]="['/profesorForm', p.idProfesor]">Actualizar</a>
+            </td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,37 @@
+<div class="contenido-listado">
+  <h2 class="titulo-listado">Inscripciones</h2>
+  <div class="text-center mb-3">
+    <a class="btn btn-primary" routerLink="/inscripcionForm">Registrar inscripción</a>
+  </div>
+  <table class="table table-bordered table-striped tabla-clase">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Fecha</th>
+        <th>Periodo</th>
+        <th>Alumno</th>
+        <th>Curso</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (inscripciones.length === 0) {
+        <tr><td colspan="6" class="text-center text-muted py-4">No hay inscripciones</td></tr>
+      } @else {
+        @for (i of inscripciones; track i.idInscripcion) {
+          <tr>
+            <td class="col-centro">{{ i.idInscripcion }}</td>
+            <td class="col-centro">{{ i.fechaInscripcion }}</td>
+            <td>{{ i.periodo }}</td>
+            <td>{{ i.alumnoNombre || i.idAlumno }}</td>
+            <td>{{ i.cursoNombre || i.idCurso }}</td>
+            <td class="col-acciones">
+              <button type="button" class="btn btn-sm btn-outline-danger me-1" (click)="eliminar(i.idInscripcion)">Eliminar</button>
+              <a class="btn btn-sm btn-outline-dark" [routerLink]="['/inscripcionForm', i.idInscripcion]">Actualizar</a>
+            </td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>

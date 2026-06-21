@@ -1,0 +1,46 @@
+<div class="contenido-listado">
+  <h2 class="titulo-listado">Listado de Frases</h2>
+
+  <table class="table table-bordered table-striped tabla-clase">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>autor</th>
+        <th>texto</th>
+        <th>acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (frases.length === 0) {
+        <tr>
+          <td colspan="4" class="text-center text-muted py-4">
+            No hay frases registradas
+          </td>
+        </tr>
+      } @else {
+        @for (frase of frases; track frase.id) {
+          <tr>
+            <td class="col-id">{{ frase.id }}</td>
+            <td class="col-autor">{{ frase.autor }}</td>
+            <td class="col-texto">{{ frase.texto }}</td>
+            <td class="col-acciones">
+              <button
+                type="button"
+                class="btn btn-sm btn-outline-danger me-1"
+                (click)="eliminar(frase.id)"
+              >
+                Eliminar
+              </button>
+              <a
+                class="btn btn-sm btn-outline-dark"
+                [routerLink]="['/frasesForm', frase.id]"
+              >
+                Actualizar
+              </a>
+            </td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>

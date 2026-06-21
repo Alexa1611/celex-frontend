@@ -1,0 +1,37 @@
+<div class="contenido-listado">
+  <h2 class="titulo-listado">Evaluaciones</h2>
+  <div class="text-center mb-3">
+    <a class="btn btn-primary" routerLink="/evaluacionForm">Registrar evaluación</a>
+  </div>
+  <table class="table table-bordered table-striped tabla-clase">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Speaking</th>
+        <th>Writing</th>
+        <th>Promedio</th>
+        <th>Inscripción</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (evaluaciones.length === 0) {
+        <tr><td colspan="6" class="text-center text-muted py-4">No hay evaluaciones</td></tr>
+      } @else {
+        @for (e of evaluaciones; track e.idEvaluacion) {
+          <tr>
+            <td class="col-centro">{{ e.idEvaluacion }}</td>
+            <td class="col-centro">{{ e.calificacionSpeaking }}</td>
+            <td class="col-centro">{{ e.calificacionWriting }}</td>
+            <td class="col-centro">{{ e.promedioFinal }}</td>
+            <td class="col-centro">{{ e.idInscripcion }}</td>
+            <td class="col-acciones">
+              <button type="button" class="btn btn-sm btn-outline-danger me-1" (click)="eliminar(e.idEvaluacion)">Eliminar</button>
+              <a class="btn btn-sm btn-outline-dark" [routerLink]="['/evaluacionForm', e.idEvaluacion]">Actualizar</a>
+            </td>
+          </tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>

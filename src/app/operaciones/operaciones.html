@@ -1,0 +1,60 @@
+<div class="pagina-clase">
+  <section class="tarjeta-clase">
+    <div class="campo-numero">
+      <label for="numeroUno">Número Uno</label>
+      <input
+        id="numeroUno"
+        type="number"
+        [(ngModel)]="numeroUno"
+      />
+    </div>
+
+    <div class="campo-numero">
+      <label for="numeroDos">Número Dos</label>
+      <input
+        id="numeroDos"
+        type="number"
+        [(ngModel)]="numeroDos"
+      />
+    </div>
+
+    <div class="botones-operacion">
+      <button
+        type="button"
+        class="btn-operacion"
+        [class.activo-restar]="operacionActiva === 'restar'"
+        (click)="restar()"
+      >
+        Restar
+      </button>
+      <button
+        type="button"
+        class="btn-operacion"
+        [class.activo-sumar]="operacionActiva === 'sumar'"
+        (click)="sumar()"
+      >
+        Sumar
+      </button>
+      <button
+        type="button"
+        class="btn-operacion"
+        [class.activo-multiplicar]="operacionActiva === 'multiplicar'"
+        (click)="multiplicar()"
+      >
+        Multiplicar
+      </button>
+      <button
+        type="button"
+        class="btn-operacion"
+        [class.activo-dividir]="operacionActiva === 'dividir'"
+        (click)="dividir()"
+      >
+        Dividir
+      </button>
+    </div>
+
+    <p class="resultado-texto">
+      Aquí aparecerá el resultado {{ resultado }}
+    </p>
+  </section>
+</div>

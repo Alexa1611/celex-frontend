@@ -1,0 +1,36 @@
+<div class="contenido-listado">
+  <h2 class="titulo-listado">Listado de Tipos de Frases</h2>
+
+  <table class="table table-bordered table-striped tabla-clase">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>nombre</th>
+        <th>acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (tipo of tipos; track tipo.id) {
+        <tr>
+          <td class="col-id">{{ tipo.id }}</td>
+          <td class="col-centro">{{ tipo.nombre }}</td>
+          <td class="col-acciones">
+            <button
+              type="button"
+              class="btn btn-sm btn-outline-danger me-1"
+              (click)="eliminar(tipo.id)"
+            >
+              Eliminar
+            </button>
+            <a
+              class="btn btn-sm btn-outline-dark"
+              [routerLink]="['/tiposFrasesForm', tipo.id]"
+            >
+              Actualizar
+            </a>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

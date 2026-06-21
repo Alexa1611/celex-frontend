@@ -1,0 +1,12 @@
+.app-main {
+  flex: 1;
+}
+
+.app-footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.85rem;
+  color: #666;
+  background: #fff;
+  border-top: 1px solid #eee;
+}

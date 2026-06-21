@@ -1,0 +1,46 @@
+<div class="container py-4 formulario-clase">
+  <div class="card border-success">
+    <div class="card-body">
+      <h3 class="text-center mb-4">{{ esEdicion ? 'Actualizar inscripción' : 'Registrar inscripción' }}</h3>
+      <form>
+        @if (esEdicion) {
+          <div class="mb-3">
+            <label class="form-label">ID</label>
+            <input type="text" class="form-control" [value]="inscripcion.idInscripcion" readonly />
+          </div>
+        }
+        <div class="mb-3">
+          <label class="form-label">Fecha</label>
+          <input type="date" class="form-control" [(ngModel)]="inscripcion.fechaInscripcion" name="fecha" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Periodo</label>
+          <input type="text" class="form-control" [(ngModel)]="inscripcion.periodo" name="periodo" placeholder="2026-1" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Alumno</label>
+          <select class="form-select" [(ngModel)]="inscripcion.idAlumno" name="idAlumno">
+            <option [ngValue]="null">Seleccione...</option>
+            @for (a of alumnos; track a.idAlumno) {
+              <option [ngValue]="a.idAlumno">{{ a.boleta }} - {{ a.nombre }} {{ a.apellidos }}</option>
+            }
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Curso</label>
+          <select class="form-select" [(ngModel)]="inscripcion.idCurso" name="idCurso">
+            <option [ngValue]="null">Seleccione...</option>
+            @for (c of cursos; track c.idCurso) {
+              <option [ngValue]="c.idCurso">{{ c.idioma }} {{ c.nivel }} - {{ c.horario }}</option>
+            }
+          </select>
+        </div>
+        @if (!esEdicion) {
+          <button type="button" class="btn btn-outline-primary form-control" (click)="registrar()">Registrar</button>
+        } @else {
+          <button type="button" class="btn btn-outline-success form-control" (click)="actualizar()">Actualizar</button>
+        }
+      </form>
+    </div>
+  </div>
+</div>

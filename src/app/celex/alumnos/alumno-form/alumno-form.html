@@ -1,0 +1,45 @@
+<div class="container py-4 formulario-clase">
+  <div class="card border-success">
+    <div class="card-body">
+      <h3 class="text-center mb-4">{{ esEdicion ? 'Actualizar alumno' : 'Registrar alumno' }}</h3>
+      <form>
+        @if (esEdicion) {
+          <div class="mb-3">
+            <label class="form-label" for="id">ID</label>
+            <input id="id" type="text" class="form-control" [value]="alumno.idAlumno" readonly />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="boleta">Boleta</label>
+          <input id="boleta" type="number" class="form-control" [(ngModel)]="alumno.boleta" name="boleta" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="nombre">Nombre</label>
+          <input id="nombre" type="text" class="form-control" [(ngModel)]="alumno.nombre" name="nombre" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="apellidos">Apellidos</label>
+          <input id="apellidos" type="text" class="form-control" [(ngModel)]="alumno.apellidos" name="apellidos" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="correo">Correo</label>
+          <input id="correo" type="email" class="form-control" [(ngModel)]="alumno.correo" name="correo" />
+        </div>
+
+        @if (!esEdicion) {
+          <button type="button" class="btn btn-outline-primary form-control" (click)="registrar()">
+            Registrar
+          </button>
+        } @else {
+          <button type="button" class="btn btn-outline-success form-control" (click)="actualizar()">
+            Actualizar
+          </button>
+        }
+      </form>
+    </div>
+  </div>
+</div>
