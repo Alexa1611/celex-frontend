@@ -122,18 +122,18 @@ app-root {
   background: #fff;
   min-height: calc(100vh - 120px);
   padding: 1.5rem 2rem 3rem;
+  overflow-x: hidden;
 }
 
-.titulo-listado {
-  text-align: center;
-  font-weight: 700;
-  font-size: 1.75rem;
-  margin-bottom: 1.5rem;
-  color: #222;
+.tabla-responsive-celex {
+  max-width: 1100px;
+  margin: 0 auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .tabla-clase {
-  max-width: 1100px;
+  width: 100%;
+  min-width: 640px;
   margin: 0 auto;
   border-color: #ccc;
 }
@@ -155,11 +155,19 @@ app-root {
 .col-centro,
 .col-acciones {
   text-align: center;
+}
+
+.col-acciones {
   white-space: nowrap;
+}
+
+.col-acciones .btn {
+  margin-bottom: 0.25rem;
 }
 
 .col-texto {
   text-align: left;
+  word-break: break-word;
 }
 
 .tabla-clase .btn-outline-danger {
@@ -182,4 +190,95 @@ app-root {
 
 .formulario-clase .form-control[readonly] {
   background-color: #f8f9fa;
+}
+
+.titulo-listado {
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  color: #222;
+}
+
+.botones-home {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.botones-home .btn {
+  flex: 1 1 auto;
+  min-width: 140px;
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .contenido-listado {
+    padding: 1rem 0.75rem 2rem;
+  }
+
+  .titulo-listado {
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+  }
+
+  .tarjeta-clase {
+    padding: 1.25rem 1rem;
+    margin: 0 0.5rem;
+  }
+
+  .tarjeta-bienvenida h1 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .tarjeta-bienvenida .lead {
+    font-size: 1rem;
+  }
+
+  .pagina-clase {
+    padding: 1rem 0.5rem 2rem;
+  }
+
+  .formulario-clase {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .tabla-clase .btn-outline-danger,
+  .tabla-clase .btn-outline-dark {
+    min-width: auto;
+    display: block;
+    width: 100%;
+    margin: 0.15rem 0 !important;
+  }
+
+  .col-acciones {
+    white-space: normal;
+    min-width: 110px;
+  }
+
+  .navbar-brand {
+    font-size: 1.1rem;
+  }
+
+  .app-footer {
+    font-size: 0.75rem;
+    padding: 0.75rem 0.5rem;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 576px) {
+  .botones-home .btn {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .alert .btn {
+    display: block;
+    width: 100%;
+    margin: 0.35rem 0 !important;
+  }
 }
