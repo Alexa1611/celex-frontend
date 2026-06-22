@@ -13,6 +13,7 @@ import { AlumnoService } from '../../celex.service';
 export class AlumnoForm implements OnInit {
   alumno: AlumnoDTO = new AlumnoDTO();
   esEdicion = false;
+  guardando = false;
 
   constructor(
     private service: AlumnoService,
@@ -40,34 +41,65 @@ export class AlumnoForm implements OnInit {
   }
 
   private validar(): boolean {
-    if (!this.alumno.boleta || !this.alumno.nombre.trim() || !this.alumno.apellidos.trim() || !this.alumno.correo.trim()) {
+    const boleta = Number(this.alumno.boleta);
+    const nombre = (this.alumno.nombre ?? '').trim();
+    const apellidos = (this.alumno.apellidos ?? '').trim();
+    const correo = (this.alumno.correo ?? '').trim();
+
+    if (!boleta || !nombre || !apellidos || !correo) {
       Swal.fire('Validación', 'Complete todos los campos', 'warning');
       return false;
     }
+
+    this.alumno.boleta = boleta;
+    this.alumno.nombre = nombre;
+    this.alumno.apellidos = apellidos;
+    this.alumno.correo = correo;
     return true;
   }
 
   registrar(): void {
-    if (!this.validar()) return;
+    if (!this.validar() || this.guardando) return;
+
+    this.guardando = true;
+    Swal.fire({
+      title: 'Registrando...',
+      text: 'Espera un momento (el servidor puede tardar ~1 min)',
+      allowOutsideClick: false,
+      didOpen: () => Swal.showLoading(),
+    });
 
     this.service.registrar(this.alumno).subscribe({
       next: (evto) => {
+        this.guardando = false;
         Swal.fire('Registrado', `Alumno ${evto.nombre} registrado`, 'success');
         this.router.navigate(['/alumnos']);
       },
-      error: () => Swal.fire('Error', 'No se pudo registrar el alumno', 'error'),
+      error: () => {
+        this.guardando = false;
+        Swal.fire(
+          'Error',
+          'No se pudo registrar. Espera 1 minuto y vuelve a intentar (el servidor free se duerme).',
+          'error',
+        );
+      },
     });
   }
 
   actualizar(): void {
-    if (!this.esEdicion || !this.alumno.idAlumno || !this.validar()) return;
+    if (!this.esEdicion || !this.alumno.idAlumno || !this.validar() || this.guardando) return;
 
+    this.guardando = true;
     this.service.actualizar(this.alumno.idAlumno, this.alumno).subscribe({
       next: (evto) => {
+        this.guardando = false;
         Swal.fire('Actualizado', `Alumno ${evto.nombre} actualizado`, 'success');
         this.router.navigate(['/alumnos']);
       },
-      error: () => Swal.fire('Error', 'No se pudo actualizar el alumno', 'error'),
+      error: () => {
+        this.guardando = false;
+        Swal.fire('Error', 'No se pudo actualizar el alumno', 'error');
+      },
     });
   }
 }

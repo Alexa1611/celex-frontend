@@ -31,12 +31,22 @@
         </div>
 
         @if (!esEdicion) {
-          <button type="button" class="btn btn-outline-primary form-control" (click)="registrar()">
-            Registrar
+          <button
+            type="button"
+            class="btn btn-outline-primary form-control"
+            [disabled]="guardando"
+            (click)="registrar()"
+          >
+            {{ guardando ? 'Registrando...' : 'Registrar' }}
           </button>
         } @else {
-          <button type="button" class="btn btn-outline-success form-control" (click)="actualizar()">
-            Actualizar
+          <button
+            type="button"
+            class="btn btn-outline-success form-control"
+            [disabled]="guardando"
+            (click)="actualizar()"
+          >
+            {{ guardando ? 'Guardando...' : 'Actualizar' }}
           </button>
         }
       </form>
