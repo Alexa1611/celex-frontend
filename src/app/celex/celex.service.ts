@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { cloudRequest } from './celex-http.util';
 import {
   AlumnoDTO,
   CursoDTO,
@@ -17,23 +18,23 @@ export class AlumnoService {
   constructor(private http: HttpClient) {}
 
   listar(): Observable<AlumnoDTO[]> {
-    return this.http.get<AlumnoDTO[]>(this.url);
+    return cloudRequest(this.http.get<AlumnoDTO[]>(this.url));
   }
 
   obtener(id: number): Observable<AlumnoDTO> {
-    return this.http.get<AlumnoDTO>(`${this.url}/${id}`);
+    return cloudRequest(this.http.get<AlumnoDTO>(`${this.url}/${id}`));
   }
 
   registrar(dto: AlumnoDTO): Observable<AlumnoDTO> {
-    return this.http.post<AlumnoDTO>(this.url, dto);
+    return cloudRequest(this.http.post<AlumnoDTO>(this.url, dto));
   }
 
   actualizar(id: number, dto: AlumnoDTO): Observable<AlumnoDTO> {
-    return this.http.put<AlumnoDTO>(`${this.url}/${id}`, dto);
+    return cloudRequest(this.http.put<AlumnoDTO>(`${this.url}/${id}`, dto));
   }
 
   eliminar(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.url}/${id}`);
+    return cloudRequest(this.http.delete<void>(`${this.url}/${id}`));
   }
 }
 
@@ -44,23 +45,23 @@ export class ProfesorService {
   constructor(private http: HttpClient) {}
 
   listar(): Observable<ProfesorDTO[]> {
-    return this.http.get<ProfesorDTO[]>(this.url);
+    return cloudRequest(this.http.get<ProfesorDTO[]>(this.url));
   }
 
   obtener(id: number): Observable<ProfesorDTO> {
-    return this.http.get<ProfesorDTO>(`${this.url}/${id}`);
+    return cloudRequest(this.http.get<ProfesorDTO>(`${this.url}/${id}`));
   }
 
   registrar(dto: ProfesorDTO): Observable<ProfesorDTO> {
-    return this.http.post<ProfesorDTO>(this.url, dto);
+    return cloudRequest(this.http.post<ProfesorDTO>(this.url, dto));
   }
 
   actualizar(id: number, dto: ProfesorDTO): Observable<ProfesorDTO> {
-    return this.http.put<ProfesorDTO>(`${this.url}/${id}`, dto);
+    return cloudRequest(this.http.put<ProfesorDTO>(`${this.url}/${id}`, dto));
   }
 
   eliminar(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.url}/${id}`);
+    return cloudRequest(this.http.delete<void>(`${this.url}/${id}`));
   }
 }
 
@@ -71,23 +72,23 @@ export class CursoService {
   constructor(private http: HttpClient) {}
 
   listar(): Observable<CursoDTO[]> {
-    return this.http.get<CursoDTO[]>(this.url);
+    return cloudRequest(this.http.get<CursoDTO[]>(this.url));
   }
 
   obtener(id: number): Observable<CursoDTO> {
-    return this.http.get<CursoDTO>(`${this.url}/${id}`);
+    return cloudRequest(this.http.get<CursoDTO>(`${this.url}/${id}`));
   }
 
   registrar(dto: CursoDTO): Observable<CursoDTO> {
-    return this.http.post<CursoDTO>(this.url, dto);
+    return cloudRequest(this.http.post<CursoDTO>(this.url, dto));
   }
 
   actualizar(id: number, dto: CursoDTO): Observable<CursoDTO> {
-    return this.http.put<CursoDTO>(`${this.url}/${id}`, dto);
+    return cloudRequest(this.http.put<CursoDTO>(`${this.url}/${id}`, dto));
   }
 
   eliminar(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.url}/${id}`);
+    return cloudRequest(this.http.delete<void>(`${this.url}/${id}`));
   }
 }
 
@@ -98,23 +99,23 @@ export class InscripcionService {
   constructor(private http: HttpClient) {}
 
   listar(): Observable<InscripcionDTO[]> {
-    return this.http.get<InscripcionDTO[]>(this.url);
+    return cloudRequest(this.http.get<InscripcionDTO[]>(this.url));
   }
 
   obtener(id: number): Observable<InscripcionDTO> {
-    return this.http.get<InscripcionDTO>(`${this.url}/${id}`);
+    return cloudRequest(this.http.get<InscripcionDTO>(`${this.url}/${id}`));
   }
 
   registrar(dto: InscripcionDTO): Observable<InscripcionDTO> {
-    return this.http.post<InscripcionDTO>(this.url, dto);
+    return cloudRequest(this.http.post<InscripcionDTO>(this.url, dto));
   }
 
   actualizar(id: number, dto: InscripcionDTO): Observable<InscripcionDTO> {
-    return this.http.put<InscripcionDTO>(`${this.url}/${id}`, dto);
+    return cloudRequest(this.http.put<InscripcionDTO>(`${this.url}/${id}`, dto));
   }
 
   eliminar(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.url}/${id}`);
+    return cloudRequest(this.http.delete<void>(`${this.url}/${id}`));
   }
 }
 
@@ -125,22 +126,22 @@ export class EvaluacionService {
   constructor(private http: HttpClient) {}
 
   listar(): Observable<EvaluacionDTO[]> {
-    return this.http.get<EvaluacionDTO[]>(this.url);
+    return cloudRequest(this.http.get<EvaluacionDTO[]>(this.url));
   }
 
   obtener(id: number): Observable<EvaluacionDTO> {
-    return this.http.get<EvaluacionDTO>(`${this.url}/${id}`);
+    return cloudRequest(this.http.get<EvaluacionDTO>(`${this.url}/${id}`));
   }
 
   registrar(dto: EvaluacionDTO): Observable<EvaluacionDTO> {
-    return this.http.post<EvaluacionDTO>(this.url, dto);
+    return cloudRequest(this.http.post<EvaluacionDTO>(this.url, dto));
   }
 
   actualizar(id: number, dto: EvaluacionDTO): Observable<EvaluacionDTO> {
-    return this.http.put<EvaluacionDTO>(`${this.url}/${id}`, dto);
+    return cloudRequest(this.http.put<EvaluacionDTO>(`${this.url}/${id}`, dto));
   }
 
   eliminar(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.url}/${id}`);
+    return cloudRequest(this.http.delete<void>(`${this.url}/${id}`));
   }
 }
