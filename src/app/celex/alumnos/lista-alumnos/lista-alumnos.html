@@ -4,6 +4,22 @@
     <a class="btn btn-primary" routerLink="/alumnoForm">Registrar alumno</a>
   </div>
 
+  @if (cargando) {
+    <p class="text-center text-muted py-4">Cargando alumnos... (el servidor puede tardar ~1 min)</p>
+  }
+
+  @if (errorApi) {
+    <div class="alert alert-warning text-center mx-auto" style="max-width: 600px">
+      <p class="mb-2">No se pudo conectar al API. Render free se duerme tras 15 min.</p>
+      <button type="button" class="btn btn-sm btn-outline-dark me-2" (click)="despertarApi()">
+        1. Despertar API
+      </button>
+      <button type="button" class="btn btn-sm btn-primary" (click)="cargar()">
+        2. Reintentar
+      </button>
+    </div>
+  }
+
   <table class="table table-bordered table-striped tabla-clase">
     <thead>
       <tr>
@@ -16,7 +32,7 @@
       </tr>
     </thead>
     <tbody>
-      @if (alumnos.length === 0) {
+      @if (!cargando && !errorApi && alumnos.length === 0) {
         <tr>
           <td colspan="6" class="text-center text-muted py-4">No hay alumnos registrados</td>
         </tr>

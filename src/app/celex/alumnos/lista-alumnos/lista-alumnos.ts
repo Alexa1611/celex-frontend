@@ -12,6 +12,8 @@ import { AlumnoService } from '../../celex.service';
 })
 export class ListaAlumnos implements OnInit {
   alumnos: AlumnoDTO[] = [];
+  cargando = false;
+  errorApi = false;
 
   constructor(
     private service: AlumnoService,
@@ -31,10 +33,23 @@ export class ListaAlumnos implements OnInit {
   }
 
   cargar(): void {
+    this.cargando = true;
+    this.errorApi = false;
     this.service.listar().subscribe({
-      next: (data) => (this.alumnos = data),
-      error: () => Swal.fire('Error', 'No se pudo conectar con el API CELEX', 'error'),
+      next: (data) => {
+        this.alumnos = data;
+        this.cargando = false;
+      },
+      error: () => {
+        this.cargando = false;
+        this.errorApi = true;
+        this.alumnos = [];
+      },
     });
+  }
+
+  despertarApi(): void {
+    window.open('https://celex-api.onrender.com/swagger-ui.html', '_blank');
   }
 
   eliminar(id: number | undefined): void {

@@ -8,7 +8,7 @@ export function cloudRequest<T>(request: Observable<T>): Observable<T> {
   }
 
   return request.pipe(
-    timeout(120000),
-    retry({ count: 3, delay: () => timer(15000) }),
+    timeout(180000),
+    retry({ count: 5, delay: () => timer(20000) }),
   );
 }
