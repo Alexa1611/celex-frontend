@@ -10,6 +10,7 @@ import { ListaInscripciones } from './celex/inscripciones/lista-inscripciones/li
 import { InscripcionForm } from './celex/inscripciones/inscripcion-form/inscripcion-form';
 import { ListaEvaluaciones } from './celex/evaluaciones/lista-evaluaciones/lista-evaluaciones';
 import { EvaluacionForm } from './celex/evaluaciones/evaluacion-form/evaluacion-form';
+import { ListaDocumentos } from './celex/documentos/lista-documentos/lista-documentos';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -29,5 +30,6 @@ export const routes: Routes = [
   { path: 'evaluaciones', component: ListaEvaluaciones },
   { path: 'evaluacionForm', component: EvaluacionForm },
   { path: 'evaluacionForm/:id', component: EvaluacionForm },
+  { path: 'documentos', component: ListaDocumentos },
   { path: '**', redirectTo: 'home' },
 ];

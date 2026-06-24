@@ -41,3 +41,16 @@ export class EvaluacionDTO {
   promedioFinal?: number;
   idInscripcion: number | null = null;
 }
+
+export class DocumentoDTO {
+  idDocumento?: number;
+  nombreOriginal?: string;
+  tipoContenido?: string;
+  tamanoBytes?: number;
+  descripcion?: string;
+  idInscripcion?: number;
+  alumnoNombre?: string;
+  cursoNombre?: string;
+  fechaSubida?: string;
+  urlDescarga?: string;
+}

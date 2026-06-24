@@ -9,6 +9,7 @@ import {
   EvaluacionDTO,
   InscripcionDTO,
   ProfesorDTO,
+  DocumentoDTO,
 } from '../dto/celex.dto';
 
 @Injectable({ providedIn: 'root' })
@@ -139,6 +140,33 @@ export class EvaluacionService {
 
   actualizar(id: number, dto: EvaluacionDTO): Observable<EvaluacionDTO> {
     return cloudRequest(this.http.put<EvaluacionDTO>(`${this.url}/${id}`, dto));
+  }
+
+  eliminar(id: number): Observable<void> {
+    return cloudRequest(this.http.delete<void>(`${this.url}/${id}`));
+  }
+}
+
+@Injectable({ providedIn: 'root' })
+export class DocumentoService {
+  private readonly url = `${environment.apiUrl}/api/v1/documentos/documento`;
+
+  constructor(private http: HttpClient) {}
+
+  listar(): Observable<DocumentoDTO[]> {
+    return cloudRequest(this.http.get<DocumentoDTO[]>(this.url));
+  }
+
+  subir(archivo: File, idInscripcion: number | null, descripcion: string): Observable<DocumentoDTO> {
+    const form = new FormData();
+    form.append('archivo', archivo);
+    if (idInscripcion) {
+      form.append('idInscripcion', String(idInscripcion));
+    }
+    if (descripcion.trim()) {
+      form.append('descripcion', descripcion.trim());
+    }
+    return cloudRequest(this.http.post<DocumentoDTO>(this.url, form));
   }
 
   eliminar(id: number): Observable<void> {
