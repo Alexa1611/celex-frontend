@@ -75,13 +75,14 @@ export class AlumnoForm implements OnInit {
         Swal.fire('Registrado', `Alumno ${evto.nombre} registrado`, 'success');
         this.router.navigate(['/alumnos']);
       },
-      error: () => {
+      error: (err) => {
         this.guardando = false;
-        Swal.fire(
-          'Error',
-          'No se pudo registrar. Espera 1 minuto y vuelve a intentar (el servidor free se duerme).',
-          'error',
-        );
+        const msg =
+          err?.error?.error ??
+          (err?.status === 409
+            ? 'Boleta o correo ya registrados. Usa datos diferentes.'
+            : 'No se pudo registrar. Abre Swagger primero para despertar el servidor e intenta de nuevo.');
+        Swal.fire('Error', msg, 'error');
       },
     });
   }

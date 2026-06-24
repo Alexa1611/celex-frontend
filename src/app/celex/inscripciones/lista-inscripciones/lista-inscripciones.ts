@@ -34,6 +34,27 @@ export class ListaInscripciones implements OnInit {
     });
   }
 
+  generarPdf(id: number | undefined): void {
+    if (!id) return;
+    Swal.fire({
+      title: 'Generando PDF...',
+      allowOutsideClick: false,
+      didOpen: () => Swal.showLoading(),
+    });
+    this.service.generarConstanciaPdf(id).subscribe({
+      next: (blob) => {
+        Swal.close();
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `constancia-inscripcion-${id}.pdf`;
+        link.click();
+        window.URL.revokeObjectURL(url);
+      },
+      error: () => Swal.fire('Error', 'No se pudo generar el PDF', 'error'),
+    });
+  }
+
   eliminar(id: number | undefined): void {
     if (!id) return;
     Swal.fire({

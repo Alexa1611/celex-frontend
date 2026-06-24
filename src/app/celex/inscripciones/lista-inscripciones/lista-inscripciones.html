@@ -27,6 +27,13 @@
             <td>{{ i.alumnoNombre || i.idAlumno }}</td>
             <td>{{ i.cursoNombre || i.idCurso }}</td>
             <td class="col-acciones">
+              <button
+                type="button"
+                class="btn btn-sm btn-outline-primary me-1"
+                (click)="generarPdf(i.idInscripcion)"
+              >
+                Generar PDF
+              </button>
               <button type="button" class="btn btn-sm btn-outline-danger me-1" (click)="eliminar(i.idInscripcion)">Eliminar</button>
               <a class="btn btn-sm btn-outline-dark" [routerLink]="['/inscripcionForm', i.idInscripcion]">Actualizar</a>
             </td>
